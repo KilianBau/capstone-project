@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 
 export default function AppName() {
-  return <StyledName>TripPic</StyledName>;
+  return <StyledAppHeadline>TripPic</StyledAppHeadline>;
 }
 
-const StyledName = styled.h1`
+const StyledAppHeadline = styled.h1`
   text-align: center;
   border: 3px solid black;
   border-radius: 50%;
