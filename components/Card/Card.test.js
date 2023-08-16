@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import Card from ".";
-import { countries } from "@/lib/db";
+import { initialCountries } from "@/lib/db";
 
 test("renders the countries Österreich and Australien", () => {
-  render(<Card countries={countries} />);
+  render(<Card isCountry={initialCountries} />);
   const cardÖsterreich = screen.getByText("Österreich");
 
   expect(cardÖsterreich).toBeInTheDocument();
