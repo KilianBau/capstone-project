@@ -10,7 +10,7 @@ export default function Card({ countries }) {
         ))}
       </StyledCountries>
       <StyledDiv>
-        <StyledLink href="/formCountry">+</StyledLink>
+        <StyledLink href="/countryForm">+</StyledLink>
       </StyledDiv>
     </>
   );
