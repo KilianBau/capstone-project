@@ -2,18 +2,12 @@ import GlobalStyle from "../styles";
 import { initialCountries } from "@/lib/db";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  const [isCountry, setCountry] = useState(initialCountries);
+  const [countries, setCountry] = useState(initialCountries);
   const router = useRouter();
-  function submitNewCountry(country) {
-    const newCountries = {
-      id: uid(),
-      name: country,
-    };
-
-    setCountry([...isCountry, newCountries]);
+  function submitNewCountry(newCountry) {
+    setCountry([...countries, newCountry]);
     router.push("/");
   }
 
@@ -22,7 +16,7 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Component
         {...pageProps}
-        isCountry={isCountry}
+        countries={countries}
         submitNewCountry={submitNewCountry}
       />
     </>

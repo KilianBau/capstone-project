@@ -1,11 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function Card({ isCountry }) {
+export default function Card({ countries }) {
   return (
     <>
       <StyledCountries>
-        {isCountry.map((country) => (
+        {countries.map((country) => (
           <StyledCountry key={country.id}>{country.name}</StyledCountry>
         ))}
       </StyledCountries>
@@ -34,7 +34,7 @@ const StyledCountry = styled.li`
   padding-top: 8%;
   padding-bottom: 8%;
   padding-left: 2%;
-  font-size: x-large;
+  font-size: 25px;
   margin-top: 0 auto;
 `;
 
@@ -50,5 +50,5 @@ const StyledLink = styled(Link)`
   border-radius: 50%;
   padding: 0px 12px 4px 12px;
   color: black;
-  font-size: xx-large;
+  font-size: 30px;
 `;

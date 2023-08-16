@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import AppName from "../AppName";
+import { uid } from "uid";
 
-export default function FormCountry({ submitNewCountry }) {
+export default function CountryForm({ submitNewCountry }) {
   function onSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const country = Object.fromEntries(formData);
-
-    submitNewCountry(country.name);
+    const newCountry = {
+      id: uid(),
+      name: country.name,
+    };
+    submitNewCountry(newCountry);
   }
   return (
     <>
@@ -62,7 +66,7 @@ const StyledButton = styled.button`
   border-radius: 4px;
   background-color: #309c27;
   border: none;
-  font-size: large;
+  font-size: 18px;
   &:hover {
     background-color: #28cc1b;
   }
