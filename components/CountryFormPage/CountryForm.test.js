@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CountryForm from ".";
-import { uid } from "uid";
 
 jest.mock("next/router", () => ({
   useRouter: () => ({ push: () => {} }),
