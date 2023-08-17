@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { StyledCountries } from "../Card";
+
 import { styled } from "styled-components";
 
 export default function DetailCountry({ countries }) {
@@ -58,4 +58,12 @@ const StyledCountry = styled.li`
   font-size: 25px;
   margin-top: 0 auto;
   overflow: auto;
+`;
+const StyledCountries = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  gap: 1rem;
+  padding: 0%;
 `;
