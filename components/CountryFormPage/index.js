@@ -10,9 +10,12 @@ export default function CountryForm({ submitNewCountry }) {
     const newCountry = {
       id: uid(),
       name: country.name,
+      startDate: country.startdate,
+      endDate: country.enddate,
     };
     submitNewCountry(newCountry);
   }
+
   return (
     <>
       <AppName />
@@ -21,11 +24,26 @@ export default function CountryForm({ submitNewCountry }) {
           <StyledDiv>
             <StyledLabel htmlFor="name">Land hinzufügen: </StyledLabel>
             <StyledInput
+              maxLength="60"
               name="name"
               id="name"
               type="text"
               placeholder="Österreich, Australien..."
               required
+            />
+            <StyledLabel htmlFor="startdate">Startdatum:</StyledLabel>
+            <StyledInput
+              maxLength="60"
+              name="startdate"
+              id="startdate"
+              type="date"
+            />
+            <StyledLabel htmlFor="enddate">Enddatum:</StyledLabel>
+            <StyledInput
+              maxLength="60"
+              name="enddate"
+              id="enddate"
+              type="date"
             />
           </StyledDiv>
           <StyledButton type="submit">Hinzufügen</StyledButton>
@@ -58,6 +76,7 @@ const StyledInput = styled.input`
 
 const StyledDiv = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 const StyledButton = styled.button`

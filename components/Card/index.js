@@ -6,7 +6,9 @@ export default function Card({ countries }) {
     <>
       <StyledCountries>
         {countries.map((country) => (
-          <StyledCountry key={country.id}>{country.name}</StyledCountry>
+          <StyledDetailLink key={country.id} href={`/${country.name}`}>
+            <StyledListCountry>{country.name}</StyledListCountry>
+          </StyledDetailLink>
         ))}
       </StyledCountries>
       <StyledDiv>
@@ -16,7 +18,7 @@ export default function Card({ countries }) {
   );
 }
 
-const StyledCountries = styled.ul`
+export const StyledCountries = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +27,11 @@ const StyledCountries = styled.ul`
   padding: 0%;
 `;
 
-const StyledCountry = styled.li`
+const StyledListCountry = styled.li`
+  font-weight: 700;
+`;
+
+const StyledDetailLink = styled(Link)`
   border: 2px solid black;
   width: 90%;
   text-align: left;
@@ -36,6 +42,9 @@ const StyledCountry = styled.li`
   padding-left: 2%;
   font-size: 25px;
   margin-top: 0 auto;
+  overflow: auto;
+  text-decoration: none;
+  color: black;
 `;
 
 const StyledDiv = styled.div`
