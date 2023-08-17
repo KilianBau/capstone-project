@@ -6,7 +6,7 @@ export default function Card({ countries }) {
     <>
       <StyledCountries>
         {countries.map((country) => (
-          <StyledDetailLink key={country.id} href={`/${country.name}`}>
+          <StyledDetailLink key={country.id} href={`/Subpages/${country.name}`}>
             <StyledListCountry>{country.name}</StyledListCountry>
           </StyledDetailLink>
         ))}
