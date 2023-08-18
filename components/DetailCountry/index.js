@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { styled } from "styled-components";
-
+import { StyledCountries } from "../Card";
 export default function DetailCountry({ countries }) {
   const router = useRouter();
   const currentPage = router.query.detailCountry;
@@ -42,12 +42,14 @@ const StyledCountryName = styled.h3`
   margin-top: 0;
 `;
 
-const StyledDateHeader = styled.h5`
+const StyledDateHeader = styled.h4`
   margin: 0 auto;
+  font-weight: 600;
 `;
 
-const StyledDate = styled.h6`
+const StyledDate = styled.h5`
   margin: 0 auto;
+  font-weight: 400;
 `;
 
 const StyledCountry = styled.li`
@@ -62,12 +64,4 @@ const StyledCountry = styled.li`
   font-size: 25px;
   margin-top: 0 auto;
   overflow: auto;
-`;
-const StyledCountries = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  list-style-type: none;
-  gap: 1rem;
-  padding: 0%;
 `;

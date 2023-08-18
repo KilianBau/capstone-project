@@ -32,19 +32,9 @@ export default function CountryForm({ submitNewCountry }) {
               required
             />
             <StyledLabel htmlFor="startdate">Startdatum:</StyledLabel>
-            <StyledInput
-              maxLength="60"
-              name="startdate"
-              id="startdate"
-              type="date"
-            />
+            <StyledInput name="startdate" id="startdate" type="date" />
             <StyledLabel htmlFor="enddate">Enddatum:</StyledLabel>
-            <StyledInput
-              maxLength="60"
-              name="enddate"
-              id="enddate"
-              type="date"
-            />
+            <StyledInput name="enddate" id="enddate" type="date" />
           </StyledDiv>
           <StyledButton type="submit">Hinzufügen</StyledButton>
         </StyledFieldset>
