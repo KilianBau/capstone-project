@@ -1,10 +1,14 @@
 import { useRouter } from "next/router";
-
 import { styled } from "styled-components";
 
 export default function DetailCountry({ countries }) {
   const router = useRouter();
   const currentPage = router.query.detailCountry;
+
+  if (!currentPage) {
+    return null;
+  }
+
   const currentCountry = countries.find(
     (country) => country.name === currentPage
   );
