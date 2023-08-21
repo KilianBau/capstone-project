@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AppName from "../AppName";
+
 import { uid } from "uid";
 
 export default function CountryForm({ submitNewCountry }) {
@@ -18,7 +18,6 @@ export default function CountryForm({ submitNewCountry }) {
 
   return (
     <>
-      <AppName />
       <form onSubmit={onSubmit}>
         <StyledFieldset>
           <StyledDiv>

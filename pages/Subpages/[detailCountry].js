@@ -1,11 +1,9 @@
-import AppName from "@/components/AppName";
 import DetailCountry from "@/components/DetailCountry";
 
-export default function DetailCountryPage({ countries }) {
+export default function DetailCountryPage({ countries, deleteCountry }) {
   return (
     <>
-      <AppName />
-      <DetailCountry countries={countries} />
+      <DetailCountry countries={countries} deleteCountry={deleteCountry} />
     </>
   );
 }
