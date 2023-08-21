@@ -1,3 +1,4 @@
+import AppName from "@/components/AppName";
 import GlobalStyle from "../styles";
 import { initialCountries } from "@/lib/db";
 import { useRouter } from "next/router";
@@ -11,13 +12,19 @@ export default function App({ Component, pageProps }) {
     router.push("/");
   }
 
+  function deleteCountry(countriesWithoutSelectedCountry) {
+    setCountry(countriesWithoutSelectedCountry);
+  }
+  console.log(countries);
   return (
     <>
       <GlobalStyle />
+      <AppName />
       <Component
         {...pageProps}
         countries={countries}
         submitNewCountry={submitNewCountry}
+        deleteCountry={deleteCountry}
       />
     </>
   );
