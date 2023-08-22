@@ -8,11 +8,13 @@ export default createGlobalStyle`
   }
 
 :root {
-  --primary-color: turquoise;
+  --primary-color: rgb(69, 165, 217);
+  --secondary-color: rgb(232, 63, 85);
 }
 
   body {
     margin: 0;
+
     font-family: system-ui;
     width: 100%;
     height: 100%;
