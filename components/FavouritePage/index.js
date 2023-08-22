@@ -20,7 +20,6 @@ export default function FavouritePage({ countries, toggleFavourite }) {
             <FavouriteButton
               onClick={() => toggleFavourite(country.id)}
               color={country.isFavourite ? "rgb(191, 46, 80)" : "black"}
-              stroke="grey"
             />
             <StyledDetailLink href={`/Subpages/${country.name}`}>
               <StyledListCountry>{country.name}</StyledListCountry>
