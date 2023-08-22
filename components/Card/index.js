@@ -1,22 +1,38 @@
 import Link from "next/link";
 import styled from "styled-components";
+import FavouriteButton from "../FavouriteButton";
 
-export default function Card({ countries }) {
+export default function Card({ countries, toggleFavourite }) {
   return (
     <>
       <StyledCountries>
         {countries.map((country) => (
-          <StyledDetailLink key={country.id} href={`/Subpages/${country.name}`}>
-            <StyledListCountry>{country.name}</StyledListCountry>
-          </StyledDetailLink>
+          <ImageWrapperSpan key={country.id}>
+            <FavouriteButton
+              countries={countries}
+              onClick={() => toggleFavourite(country.id)}
+              color={
+                country.isFavourite ? "rgb(191, 46, 80)" : "rgb(109, 112, 110)"
+              }
+              stroke="grey"
+            />
+            <StyledDetailLink href={`/Subpages/${country.name}`}>
+              <StyledListCountry>{country.name}</StyledListCountry>
+            </StyledDetailLink>
+          </ImageWrapperSpan>
         ))}
       </StyledCountries>
       <StyledDiv>
         <StyledLink href="/countryForm">+</StyledLink>
       </StyledDiv>
+      <Spacer />
     </>
   );
 }
+
+export const Spacer = styled.div`
+  margin-bottom: 16%;
+`;
 
 export const StyledCountries = styled.ul`
   display: flex;
@@ -27,11 +43,20 @@ export const StyledCountries = styled.ul`
   padding: 0%;
 `;
 
-const StyledListCountry = styled.li`
+export const StyledListCountry = styled.li`
   font-weight: 700;
 `;
 
-const StyledDetailLink = styled(Link)`
+export const StyledDetailLink = styled(Link)`
+  font-size: 25px;
+  margin-top: 0 auto;
+  overflow: auto;
+  text-decoration: none;
+  color: black;
+  display: flex;
+`;
+
+export const ImageWrapperSpan = styled.span`
   border: 2px solid black;
   width: 90%;
   text-align: left;
@@ -40,20 +65,16 @@ const StyledDetailLink = styled(Link)`
   padding-top: 8%;
   padding-bottom: 8%;
   padding-left: 2%;
-  font-size: 25px;
-  margin-top: 0 auto;
-  overflow: auto;
-  text-decoration: none;
-  color: black;
+  position: relative;
 `;
 
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   border: 4px solid black;
   border-radius: 50%;
