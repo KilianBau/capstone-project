@@ -5,10 +5,10 @@ import { useState } from "react";
 
 export default function CountryForm({ submitNewCountry }) {
   const [imagesData, setImagesData] = useState([]);
-  const [isButtonActive, setButtonActive] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
   function getData(data) {
     setImagesData([...imagesData, data]);
-    setButtonActive(true);
+    setIsButtonActive(true);
   }
 
   function onSubmit(event) {
