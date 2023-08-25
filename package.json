@@ -16,7 +16,7 @@
     "eslint-config-next": "13.4.8",
     "formidable": "^3.5.0",
     "next": "13.4.8",
-    "next-cloudinary": "^4.18.0",
+    "next-cloudinary": "^4.18.1",
     "next-images": "^1.8.5",
     "node": "^20.5.1",
     "react": "18.2.0",
