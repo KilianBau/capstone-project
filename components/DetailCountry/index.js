@@ -36,7 +36,7 @@ export default function DetailCountry({ countries, deleteCountry }) {
   if (currentCountry === undefined) {
     return null;
   }
-  const { name, startDate, endDate, id, path, publicId } = currentCountry;
+  const { name, startDate, endDate, id, imagesUrls } = currentCountry;
 
   return (
     <>
@@ -73,15 +73,15 @@ export default function DetailCountry({ countries, deleteCountry }) {
           </StyledDiv>
         </StyledCountry>
       </StyledCountries>
-      {path ? (
+      {imagesUrls ? (
         <ul>
-          {path.map((i) => (
-            <li key={i}>
+          {imagesUrls.map((imageUrl) => (
+            <li key={imageUrl}>
               <Image
-                src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${i}`}
+                src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
                 height={200}
                 width={200}
-                alt={`new added picture with path:${i}`}
+                alt={`new added picture with path:${imageUrl}`}
               />
             </li>
           ))}

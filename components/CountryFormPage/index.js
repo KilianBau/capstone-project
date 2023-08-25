@@ -4,11 +4,11 @@ import { CldUploadButton } from "next-cloudinary";
 import { useState } from "react";
 
 export default function CountryForm({ submitNewCountry }) {
-  const [imageData, setImageData] = useState("");
-  const [enableButton, setEnableButton] = useState(false);
+  const [imagesData, setImagesData] = useState([]);
+  const [isButtonActive, setButtonActive] = useState(false);
   function getData(data) {
-    setImageData([...imageData, data]);
-    setEnableButton(true);
+    setImagesData([...imagesData, data]);
+    setButtonActive(true);
   }
 
   function onSubmit(event) {
@@ -22,7 +22,7 @@ export default function CountryForm({ submitNewCountry }) {
       name: country.name,
       startDate: country.startdate,
       endDate: country.enddate,
-      path: imageData.map((data) => data.info.path),
+      imagesUrls: imagesData.map((data) => data.info.path),
     };
     submitNewCountry(newCountry);
   }
@@ -54,7 +54,7 @@ export default function CountryForm({ submitNewCountry }) {
             uploadPreset="v3xj87i3"
             required
           />
-          <StyledButton type="submit" disabled={!enableButton}>
+          <StyledButton type="submit" disabled={!isButtonActive}>
             Hinzufügen
           </StyledButton>
         </StyledFieldset>
