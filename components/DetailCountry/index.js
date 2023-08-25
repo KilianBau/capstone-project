@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { StyledCountries } from "../Card";
 import Link from "next/link";
 import BackButton from "../BackButton";
+import Image from "next/image";
 
 export default function DetailCountry({ countries, deleteCountry }) {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function DetailCountry({ countries, deleteCountry }) {
   if (currentCountry === undefined) {
     return null;
   }
-  const { name, startDate, endDate, id } = currentCountry;
+  const { name, startDate, endDate, id, path, publicId } = currentCountry;
 
   return (
     <>
@@ -72,6 +73,22 @@ export default function DetailCountry({ countries, deleteCountry }) {
           </StyledDiv>
         </StyledCountry>
       </StyledCountries>
+      {path ? (
+        <ul>
+          {path.map((i) => (
+            <li key={i}>
+              <Image
+                src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${i}`}
+                height={200}
+                width={200}
+                alt={`new added picture with path:${i}`}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Lade doch bitte Bilder deiner Reise hoch</p>
+      )}
     </>
   );
 }

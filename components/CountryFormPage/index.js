@@ -1,17 +1,28 @@
 import styled from "styled-components";
-
 import { uid } from "uid";
+import { CldUploadButton } from "next-cloudinary";
+import { useState } from "react";
 
 export default function CountryForm({ submitNewCountry }) {
+  const [imageData, setImageData] = useState("");
+  const [enableButton, setEnableButton] = useState(false);
+  function getData(data) {
+    setImageData([...imageData, data]);
+    setEnableButton(true);
+  }
+
   function onSubmit(event) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const country = Object.fromEntries(formData);
+
     const newCountry = {
       id: uid(),
       name: country.name,
       startDate: country.startdate,
       endDate: country.enddate,
+      path: imageData.map((data) => data.info.path),
     };
     submitNewCountry(newCountry);
   }
@@ -35,7 +46,17 @@ export default function CountryForm({ submitNewCountry }) {
             <StyledLabel htmlFor="enddate">Enddatum:</StyledLabel>
             <StyledInput name="enddate" id="enddate" type="date" />
           </StyledDiv>
-          <StyledButton type="submit">Hinzufügen</StyledButton>
+          <StyledLabel htmlFor="uploadimg">Upload:</StyledLabel>
+          <CldUploadButton
+            name="uploadimg"
+            id="uploadimg"
+            onUpload={getData}
+            uploadPreset="v3xj87i3"
+            required
+          />
+          <StyledButton type="submit" disabled={!enableButton}>
+            Hinzufügen
+          </StyledButton>
         </StyledFieldset>
       </form>
     </>
@@ -47,14 +68,14 @@ const StyledFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 50vh;
+  height: 50%;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 4px 4px 4px;
 `;
 
 const StyledLabel = styled.label`
-  margin-top: 15%;
+  margin-top: 10%;
   padding-right: 6%;
 `;
 
@@ -75,6 +96,7 @@ const StyledButton = styled.button`
   background-color: #309c27;
   border: none;
   font-size: 18px;
+  margin-top: 1.5rem;
   &:hover {
     background-color: #28cc1b;
   }
