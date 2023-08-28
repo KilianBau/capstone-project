@@ -4,6 +4,7 @@ import { StyledCountries } from "../Card";
 import Link from "next/link";
 import BackButton from "../BackButton";
 import Image from "next/image";
+import { StyledDiv } from "../Card";
 
 export default function DetailCountry({ countries, deleteCountry }) {
   const router = useRouter();
@@ -67,33 +68,54 @@ export default function DetailCountry({ countries, deleteCountry }) {
       <StyledCountries>
         <StyledCountry>
           <StyledCountryName>{name}</StyledCountryName>
-          <StyledDiv>
+          <StyledDivCard>
             <StyledDateHeader>Reisezeitraum:</StyledDateHeader>
             <StyledDate>{`${startDate} bis ${endDate}`}</StyledDate>
-          </StyledDiv>
+          </StyledDivCard>
         </StyledCountry>
       </StyledCountries>
       {imagesUrls ? (
-        <ul>
+        <StyledImageListUl>
           {imagesUrls.map((imageUrl) => (
-            <li key={imageUrl}>
+            <StyledImageLi key={imageUrl}>
               <Image
                 src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
-                height={200}
-                width={200}
+                height={150}
+                width={150}
                 alt={`new added picture with path:${imageUrl}`}
               />
-            </li>
+            </StyledImageLi>
           ))}
-        </ul>
+        </StyledImageListUl>
       ) : (
         <p>Lade doch bitte Bilder deiner Reise hoch</p>
       )}
+      <StyledDiv></StyledDiv>
     </>
   );
 }
 
-const StyledDiv = styled.div`
+const StyledImageListUl = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 0 auto;
+  justify-content: center;
+  @media (max-width: 375px) {
+    padding-left: 7%;
+    padding-right: 4%;
+  }
+`;
+
+const StyledImageLi = styled.li`
+  width: calc(50% - 10px);
+  margin-bottom: 20px;
+  list-style: none;
+  margin-bottom: 2%;
+`;
+
+const StyledDivCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
