@@ -1,9 +1,9 @@
 import AppName from "@/components/AppName";
 import GlobalStyle from "../styles";
 import { initialCountries } from "@/lib/db";
-import { useRouter } from "next/router";
 import useLocalStorageState from "use-local-storage-state";
 import NavBar from "@/components/NavBar";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const [countries, setCountry] = useLocalStorageState("countries", {
@@ -33,17 +33,19 @@ export default function App({ Component, pageProps }) {
       setCountry([...countries, { id, isFavourite: true }]);
     }
   }
+
   return (
     <>
+      {" "}
       <GlobalStyle />
       <AppName />
       <NavBar />
       <Component
         {...pageProps}
         countries={countries}
-        submitNewCountry={submitNewCountry}
         deleteCountry={deleteCountry}
         toggleFavourite={toggleFavourite}
+        submitNewCountry={submitNewCountry}
       />
     </>
   );
