@@ -5,6 +5,9 @@ import FavouriteButton from "../FavouriteButton";
 export default function Card({ countries, toggleFavourite }) {
   return (
     <>
+      <StyledDiv>
+        <StyledLink href="/countryForm">+</StyledLink>
+      </StyledDiv>
       <StyledCountries>
         {countries.map((country) => (
           <ImageWrapperSpan key={country.id}>
@@ -22,9 +25,7 @@ export default function Card({ countries, toggleFavourite }) {
           </ImageWrapperSpan>
         ))}
       </StyledCountries>
-      <StyledDiv>
-        <StyledLink href="/countryForm">+</StyledLink>
-      </StyledDiv>
+
       <Spacer />
     </>
   );
@@ -71,7 +72,7 @@ export const ImageWrapperSpan = styled.span`
 export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 5%;
+  margin-bottom: 8%;
 `;
 
 export const StyledLink = styled(Link)`
