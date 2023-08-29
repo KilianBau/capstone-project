@@ -4,27 +4,26 @@ import { initialCountries } from "@/lib/db";
 import useLocalStorageState from "use-local-storage-state";
 import NavBar from "@/components/NavBar";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
-  const [countries, setCountry] = useLocalStorageState("countries", {
+  const [countries, setCountries] = useLocalStorageState("countries", {
     defaultValue: initialCountries,
   });
-  const [isCurrentCountry, setIsCurrentCountry] = useLocalStorageState();
+  const [country, setCountry] = useLocalStorageState();
   const router = useRouter();
   function submitNewCountry(newCountry) {
-    setCountry([...countries, newCountry]);
+    setCountries([...countries, newCountry]);
     router.push("/");
   }
 
   function deleteCountry(countriesWithoutSelectedCountry) {
-    setCountry(countriesWithoutSelectedCountry);
+    setCountries(countriesWithoutSelectedCountry);
   }
 
   function toggleFavourite(id) {
     const favouriteCountry = countries.find((country) => country.id === id);
     if (favouriteCountry) {
-      setCountry(
+      setCountries(
         countries.map((country) =>
           country.id === id
             ? { ...country, isFavourite: !country.isFavourite }
@@ -32,7 +31,7 @@ export default function App({ Component, pageProps }) {
         )
       );
     } else {
-      setCountry([...countries, { id, isFavourite: true }]);
+      setCountries([...countries, { id, isFavourite: true }]);
     }
   }
 
@@ -44,8 +43,8 @@ export default function App({ Component, pageProps }) {
       <NavBar />
       <Component
         {...pageProps}
-        isCurrentCountry={isCurrentCountry}
-        setIsCurrentCountry={setIsCurrentCountry}
+        country={country}
+        setCountry={setCountry}
         countries={countries}
         deleteCountry={deleteCountry}
         toggleFavourite={toggleFavourite}

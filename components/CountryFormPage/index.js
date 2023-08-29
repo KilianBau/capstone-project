@@ -1,34 +1,7 @@
 import styled from "styled-components";
-import { uid } from "uid";
 import { CldUploadButton } from "next-cloudinary";
-import { useState } from "react";
 
-export default function CountryForm({ submitNewCountry }) {
-  const [imagesData, setImagesData] = useState([]);
-  const [isButtonActive, setIsButtonActive] = useState(false);
-  function getData(data) {
-    setImagesData([...imagesData, data]);
-    setIsButtonActive(true);
-  }
-
-  function onSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const country = Object.fromEntries(formData);
-
-    const newCountry = {
-      id: uid(),
-      name: country.name,
-      startDate: country.startdate,
-      endDate: country.enddate,
-      imagesUrls: imagesData.map((data) => data.info.path),
-      publicIds: imagesData.map((data) => data.info.public_id),
-    };
-    console.log(newCountry);
-    submitNewCountry(newCountry);
-  }
-
+export default function CountryForm({ getData, onSubmit, isButtonActive }) {
   return (
     <>
       <form onSubmit={onSubmit}>

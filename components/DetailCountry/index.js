@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { styled } from "styled-components";
 import { StyledCountries } from "../Card";
 import Link from "next/link";
@@ -7,50 +6,10 @@ import Image from "next/image";
 import { StyledDiv } from "../Card";
 
 export default function DetailCountry({
-  countries,
-  deleteCountry,
-  setIsCurrentCountry,
+  currentCountry,
+  onClickDelete,
+  showButton,
 }) {
-  const router = useRouter();
-  const currentPage = router.query.detailCountry;
-
-  if (!currentPage) {
-    return null;
-  }
-
-  const currentCountry = countries.find(
-    (country) => country.name === currentPage
-  );
-
-  function onClickDelete(id) {
-    const countriesWithoutSelectedCountry = countries.filter((country) => {
-      if (country.id === id) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-
-    deleteCountry(countriesWithoutSelectedCountry);
-  }
-
-  function showButton() {
-    deleteDialog.showModal();
-  }
-
-  if (currentCountry === undefined) {
-    return null;
-  }
-  function handleCurrentCountry() {
-    if (currentCountry) {
-      setIsCurrentCountry(currentCountry);
-    } else {
-      return null;
-    }
-  }
-
-  handleCurrentCountry();
-
   const { name, startDate, endDate, id, imagesUrls, publicIds } =
     currentCountry;
 

@@ -1,25 +1,8 @@
-import { useRouter } from "next/router";
 import BackButton from "../BackButton";
 import Image from "next/image";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
-export default function DetailPictureView({ countries, isCurrentCountry }) {
-  const router = useRouter();
-  const currentPublicId = router.query.detailPictureView;
-
-  if (!currentPublicId) {
-    return null;
-  }
-
-  const { publicIds, imagesUrls } = isCurrentCountry;
-  const publicId = publicIds.findIndex((id) => id === currentPublicId);
-
-  const currentPicture = imagesUrls[publicId];
-
-  if (currentPicture === undefined) {
-    return null;
-  }
-
+export default function DetailPictureView({ currentPicture }) {
   return (
     <>
       <BackButton />
