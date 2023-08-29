@@ -23,7 +23,9 @@ export default function CountryForm({ submitNewCountry }) {
       startDate: country.startdate,
       endDate: country.enddate,
       imagesUrls: imagesData.map((data) => data.info.path),
+      publicIds: imagesData.map((data) => data.info.public_id),
     };
+    console.log(newCountry);
     submitNewCountry(newCountry);
   }
 

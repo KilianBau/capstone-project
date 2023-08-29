@@ -4,11 +4,13 @@ import { initialCountries } from "@/lib/db";
 import useLocalStorageState from "use-local-storage-state";
 import NavBar from "@/components/NavBar";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [countries, setCountry] = useLocalStorageState("countries", {
     defaultValue: initialCountries,
   });
+  const [isCurrentCountry, setIsCurrentCountry] = useLocalStorageState();
   const router = useRouter();
   function submitNewCountry(newCountry) {
     setCountry([...countries, newCountry]);
@@ -42,6 +44,8 @@ export default function App({ Component, pageProps }) {
       <NavBar />
       <Component
         {...pageProps}
+        isCurrentCountry={isCurrentCountry}
+        setIsCurrentCountry={setIsCurrentCountry}
         countries={countries}
         deleteCountry={deleteCountry}
         toggleFavourite={toggleFavourite}

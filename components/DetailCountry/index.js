@@ -6,7 +6,11 @@ import BackButton from "../BackButton";
 import Image from "next/image";
 import { StyledDiv } from "../Card";
 
-export default function DetailCountry({ countries, deleteCountry }) {
+export default function DetailCountry({
+  countries,
+  deleteCountry,
+  setIsCurrentCountry,
+}) {
   const router = useRouter();
   const currentPage = router.query.detailCountry;
 
@@ -37,7 +41,18 @@ export default function DetailCountry({ countries, deleteCountry }) {
   if (currentCountry === undefined) {
     return null;
   }
-  const { name, startDate, endDate, id, imagesUrls } = currentCountry;
+  function handleCurrentCountry() {
+    if (currentCountry) {
+      setIsCurrentCountry(currentCountry);
+    } else {
+      return null;
+    }
+  }
+
+  handleCurrentCountry();
+
+  const { name, startDate, endDate, id, imagesUrls, publicIds } =
+    currentCountry;
 
   return (
     <>
@@ -78,18 +93,21 @@ export default function DetailCountry({ countries, deleteCountry }) {
         <StyledImageListUl>
           {imagesUrls.map((imageUrl) => (
             <StyledImageLi key={imageUrl}>
-              <Image
-                src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
-                height={150}
-                width={150}
-                alt={`new added picture with path:${imageUrl}`}
-              />
+              <Link href={`/${publicIds[imagesUrls.indexOf(imageUrl)]}`}>
+                <Image
+                  src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
+                  height={150}
+                  width={150}
+                  alt={`new added picture with path:${imageUrl}`}
+                />
+              </Link>
             </StyledImageLi>
           ))}
         </StyledImageListUl>
       ) : (
         <p>Lade doch bitte Bilder deiner Reise hoch</p>
       )}
+
       <StyledDiv></StyledDiv>
     </>
   );
@@ -104,7 +122,7 @@ const StyledImageListUl = styled.ul`
   justify-content: center;
   @media (max-width: 375px) {
     padding-left: 7%;
-    padding-right: 4%;
+    padding-right: 7%;
   }
 `;
 

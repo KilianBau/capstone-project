@@ -3,14 +3,14 @@ import DetailCountry from "@/components/DetailCountry";
 export default function DetailCountryPage({
   countries,
   deleteCountry,
-  imageData,
+  setIsCurrentCountry,
 }) {
   return (
     <>
       <DetailCountry
         countries={countries}
         deleteCountry={deleteCountry}
-        imageData={imageData}
+        setIsCurrentCountry={setIsCurrentCountry}
       />
     </>
   );
