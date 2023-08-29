@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { styled } from "styled-components";
 import { StyledCountries } from "../Card";
 import Link from "next/link";
@@ -6,38 +5,13 @@ import BackButton from "../BackButton";
 import Image from "next/image";
 import { StyledDiv } from "../Card";
 
-export default function DetailCountry({ countries, deleteCountry }) {
-  const router = useRouter();
-  const currentPage = router.query.detailCountry;
-
-  if (!currentPage) {
-    return null;
-  }
-
-  const currentCountry = countries.find(
-    (country) => country.name === currentPage
-  );
-
-  function onClickDelete(id) {
-    const countriesWithoutSelectedCountry = countries.filter((country) => {
-      if (country.id === id) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-
-    deleteCountry(countriesWithoutSelectedCountry);
-  }
-
-  function showButton() {
-    deleteDialog.showModal();
-  }
-
-  if (currentCountry === undefined) {
-    return null;
-  }
-  const { name, startDate, endDate, id, imagesUrls } = currentCountry;
+export default function DetailCountry({
+  currentCountry,
+  onClickDelete,
+  showButton,
+}) {
+  const { name, startDate, endDate, id, imagesUrls, publicIds } =
+    currentCountry;
 
   return (
     <>
@@ -78,18 +52,21 @@ export default function DetailCountry({ countries, deleteCountry }) {
         <StyledImageListUl>
           {imagesUrls.map((imageUrl) => (
             <StyledImageLi key={imageUrl}>
-              <Image
-                src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
-                height={150}
-                width={150}
-                alt={`new added picture with path:${imageUrl}`}
-              />
+              <Link href={`/${publicIds[imagesUrls.indexOf(imageUrl)]}`}>
+                <Image
+                  src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
+                  height={150}
+                  width={150}
+                  alt={`new added picture with path:${imageUrl}`}
+                />
+              </Link>
             </StyledImageLi>
           ))}
         </StyledImageListUl>
       ) : (
         <p>Lade doch bitte Bilder deiner Reise hoch</p>
       )}
+
       <StyledDiv></StyledDiv>
     </>
   );
@@ -104,7 +81,7 @@ const StyledImageListUl = styled.ul`
   justify-content: center;
   @media (max-width: 375px) {
     padding-left: 7%;
-    padding-right: 4%;
+    padding-right: 7%;
   }
 `;
 
