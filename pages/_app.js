@@ -34,6 +34,14 @@ export default function App({ Component, pageProps }) {
       setCountries([...countries, { id, isFavourite: true }]);
     }
   }
+  function deleteImage(updatedCountry) {
+    setCountry(updatedCountry);
+
+    const updatedCountries = countries.map((country) =>
+      country.id === updatedCountry.id ? updatedCountry : country
+    );
+    setCountries(updatedCountries);
+  }
 
   return (
     <>
@@ -49,6 +57,7 @@ export default function App({ Component, pageProps }) {
         deleteCountry={deleteCountry}
         toggleFavourite={toggleFavourite}
         submitNewCountry={submitNewCountry}
+        deleteImage={deleteImage}
       />
     </>
   );

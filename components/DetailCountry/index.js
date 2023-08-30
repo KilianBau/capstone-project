@@ -34,7 +34,9 @@ export default function DetailCountry({
           <StyledButtonDiv>
             <button>cancel</button>
             <Link href={"/"}>
-              <button onClick={() => onClickDelete(id)}>delete</button>
+              <button onClick={() => onClickDelete(id, publicIds)}>
+                delete
+              </button>
             </Link>
           </StyledButtonDiv>
         </form>
@@ -128,13 +130,13 @@ const StyledCountry = styled.li`
   overflow: auto;
 `;
 
-const StyledDeleteButton = styled.button`
+export const StyledDeleteButton = styled.button`
   &:hover {
     background-color: transparent;
   }
 `;
 
-const StyledButtonDiv = styled.div`
+export const StyledButtonDiv = styled.div`
   display: flex;
   justify-content: space-between;
 `;

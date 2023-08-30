@@ -22,7 +22,14 @@ export default function DetailCountryPage({
     (country) => country.name === currentPage
   );
 
-  function onClickDelete(id) {
+  async function onClickDelete(id, publicIds) {
+    const response = await fetch(`/api`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ publicIds }),
+    });
     const countriesWithoutSelectedCountry = countries.filter((country) => {
       if (country.id === id) {
         return false;
@@ -49,7 +56,6 @@ export default function DetailCountryPage({
     }
   }
 
-  handleCurrentCountry();
   return (
     <>
       <DetailCountry
