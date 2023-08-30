@@ -23,20 +23,8 @@ export default function DetailPictureViewPage({ country, deleteImage }) {
       method: "DELETE",
     });
 
+    deleteImage(currentPublicId, currentPicture);
     router.back();
-
-    const updatedPublicIds = country.publicIds.filter(
-      (id) => id !== currentPublicId
-    );
-    const updatedImageUrls = country.imagesUrls.filter(
-      (url) => url !== currentPicture
-    );
-    const updatedCountry = {
-      ...country,
-      publicIds: updatedPublicIds,
-      imagesUrls: updatedImageUrls,
-    };
-    deleteImage(updatedCountry);
   }
   function showImageDelete() {
     deleteImageDialog.showModal();

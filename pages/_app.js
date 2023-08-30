@@ -34,7 +34,18 @@ export default function App({ Component, pageProps }) {
       setCountries([...countries, { id, isFavourite: true }]);
     }
   }
-  function deleteImage(updatedCountry) {
+  function deleteImage(currentPublicId, currentPicture) {
+    const updatedPublicIds = country.publicIds.filter(
+      (id) => id !== currentPublicId
+    );
+    const updatedImageUrls = country.imagesUrls.filter(
+      (url) => url !== currentPicture
+    );
+    const updatedCountry = {
+      ...country,
+      publicIds: updatedPublicIds,
+      imagesUrls: updatedImageUrls,
+    };
     setCountry(updatedCountry);
 
     const updatedCountries = countries.map((country) =>

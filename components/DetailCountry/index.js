@@ -29,7 +29,7 @@ export default function DetailCountry({
         </StyledDeleteButton>
       </StyledButtonDiv>
       <dialog id="deleteDialog">
-        <p>Are you sure to delte this country?</p>
+        <p>Are you sure to delete this country?</p>
         <form method="dialog">
           <StyledButtonDiv>
             <button>cancel</button>

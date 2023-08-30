@@ -2,7 +2,6 @@ import BackButton from "../BackButton";
 import Image from "next/image";
 import styled from "styled-components";
 import { StyledButtonDiv, StyledDeleteButton } from "../DetailCountry";
-import Link from "next/link";
 
 export default function DetailPictureView({
   currentPicture,
