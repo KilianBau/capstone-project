@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }) {
   });
   const [country, setCountry] = useLocalStorageState();
   const router = useRouter();
+
   function submitNewCountry(newCountry) {
     setCountries([...countries, newCountry]);
     router.push("/");
@@ -54,6 +55,28 @@ export default function App({ Component, pageProps }) {
     setCountries(updatedCountries);
   }
 
+  function onEdit(id, editName, start, end) {
+    if (start && end && start > end) {
+      alert("End date cannot be before the start date");
+      return;
+    }
+    const editCountry = countries.find((country) => country.id === id);
+
+    console.log("apps", editCountry);
+    if (editCountry) {
+      setCountries(
+        countries.map((country) =>
+          country.id === id
+            ? { ...country, name: editName, startDate: start, endDate: end }
+            : country
+        )
+      );
+    } else {
+      setCountries(...countries);
+    }
+    router.push(`/Subpages/${editName}`);
+  }
+
   return (
     <>
       {" "}
@@ -69,6 +92,7 @@ export default function App({ Component, pageProps }) {
         toggleFavourite={toggleFavourite}
         submitNewCountry={submitNewCountry}
         deleteImage={deleteImage}
+        onEdit={onEdit}
       />
     </>
   );
