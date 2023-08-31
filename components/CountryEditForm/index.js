@@ -17,14 +17,13 @@ export default function CountryEditForm({
       <form onSubmit={onSubmitEdit}>
         <StyledFieldset>
           <StyledDiv>
-            <StyledLabel htmlFor="name">Land hinzufügen: </StyledLabel>
+            <StyledLabel htmlFor="name">Land: </StyledLabel>
             <StyledInput
               value={country.name}
               maxLength="60"
               name="name"
               id="name"
               type="text"
-              placeholder="Österreich, Australien..."
               required
               onChange={handleInputChangeName}
             />

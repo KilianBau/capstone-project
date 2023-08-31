@@ -23,7 +23,7 @@ export default function EditPage({ setCountry, onEdit, country }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const editCountry = Object.fromEntries(formData);
-    console.log("ed", editCountry);
+
     const updatedEditCountry = {
       ...country,
       name: editCountry.name,
