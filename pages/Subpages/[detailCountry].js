@@ -48,6 +48,7 @@ export default function DetailCountryPage({
   if (currentCountry === undefined) {
     return null;
   }
+
   function handleCurrentCountry() {
     if (currentCountry) {
       setCountry(currentCountry);
@@ -59,9 +60,6 @@ export default function DetailCountryPage({
   return (
     <>
       <DetailCountry
-        countries={countries}
-        deleteCountry={deleteCountry}
-        setCountry={setCountry}
         currentCountry={currentCountry}
         onClickDelete={onClickDelete}
         showButton={showButton}

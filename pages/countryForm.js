@@ -16,7 +16,14 @@ export default function CountryFormPage({ submitNewCountry }) {
 
     const formData = new FormData(event.target);
     const country = Object.fromEntries(formData);
-
+    if (
+      country.startdate &&
+      country.enddate &&
+      country.startdate > country.enddate
+    ) {
+      alert("End date cannot be before the start date");
+      return;
+    }
     const newCountry = {
       id: uid(),
       name: country.name,
