@@ -1,7 +1,7 @@
 import DetailPictureView from "@/components/DetailPictureView";
 import { useRouter } from "next/router";
 
-export default function DetailPictureViewPage({ countries, country }) {
+export default function DetailPictureViewPage({ country, deleteImage }) {
   const router = useRouter();
   const currentPublicId = router.query.detailPictureView;
 
@@ -10,19 +10,31 @@ export default function DetailPictureViewPage({ countries, country }) {
   }
 
   const { publicIds, imagesUrls } = country;
-  const publicId = publicIds.findIndex((id) => id === currentPublicId);
+  const publicIdIndex = publicIds.findIndex((id) => id === currentPublicId);
 
-  const currentPicture = imagesUrls[publicId];
+  const currentPicture = imagesUrls[publicIdIndex];
 
   if (currentPicture === undefined) {
     return null;
   }
+
+  async function handleDeletePicture() {
+    const response = await fetch(`/api/${currentPublicId}`, {
+      method: "DELETE",
+    });
+
+    deleteImage(currentPublicId, currentPicture);
+    router.back();
+  }
+  function showImageDelete() {
+    deleteImageDialog.showModal();
+  }
   return (
     <>
       <DetailPictureView
-        countries={countries}
-        country={country}
         currentPicture={currentPicture}
+        handleDeletePicture={handleDeletePicture}
+        showImageDelete={showImageDelete}
       />
     </>
   );
