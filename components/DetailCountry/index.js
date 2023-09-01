@@ -1,26 +1,31 @@
 import { styled } from "styled-components";
 import { StyledCountries } from "../Card";
 import Link from "next/link";
-import BackButton from "../BackButton";
 import Image from "next/image";
 import { StyledDiv } from "../Card";
 import moment from "moment";
 import "moment/locale/de";
+import { CldUploadButton } from "next-cloudinary";
 
 export default function DetailCountry({
   currentCountry,
   onClickDelete,
   showButton,
+  getImages,
+  newImg,
+  addImage,
+  closeButton,
 }) {
   const { name, startDate, endDate, id, imagesUrls, publicIds } =
     currentCountry;
+
   const startDatum = moment(startDate).format("ll");
   const endDatum = moment(endDate).format("ll");
   return (
     <>
       <StyledButtonDiv>
         <Link href={"/"}>
-          <StyledButton>
+          <StyledBackButton>
             {" "}
             <svg
               height={20}
@@ -30,8 +35,30 @@ export default function DetailCountry({
             >
               <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
             </svg>
-          </StyledButton>
+          </StyledBackButton>
         </Link>
+        <CenterDiv>
+          <button onClick={newImg}>+</button>
+        </CenterDiv>
+        <dialog id="newImageDialog">
+          <p>Bilder hinzufügen: </p>
+          <form method="dialog" onSubmit={addImage}>
+            <StyledButtonDiv>
+              <CldUploadButton
+                name="addimg"
+                id="addimg"
+                uploadPreset="v3xj87i3"
+                onUpload={getImages}
+                onClose={newImg}
+                onClick={closeButton}
+                required
+              />
+              <button type="submit" onClick={closeButton}>
+                Speichern
+              </button>
+            </StyledButtonDiv>
+          </form>
+        </dialog>
         <StyledDeleteButton onClick={showButton}>
           <svg
             width={20}
@@ -88,7 +115,7 @@ export default function DetailCountry({
                   src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
                   height={150}
                   width={150}
-                  alt={`new added picture with path:${imageUrl}`}
+                  alt={`new added picture with Url:${imageUrl}`}
                 />
               </Link>
             </StyledImageLi>
@@ -171,7 +198,7 @@ export const StyledButtonDiv = styled.div`
   justify-content: space-between;
 `;
 
-const StyledButton = styled.button`
+const StyledBackButton = styled.button`
   &:hover {
     background-color: transparent;
   }
@@ -186,4 +213,15 @@ const StyledEditButton = styled.button`
   }
   border-radius: 50%;
   border: 1px solid grey;
+`;
+
+const StyledButton = styled.button`
+  &:hover {
+    background-color: transparent;
+  }
+`;
+
+const CenterDiv = styled.div`
+  display: flex;
+  align-items: center;
 `;

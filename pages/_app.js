@@ -77,6 +77,35 @@ export default function App({ Component, pageProps }) {
     router.push(`/Subpages/${editName}`);
   }
 
+  function newAddedImgs(id, addedImages) {
+    setCountries((countries) => {
+      return countries.map((country) => {
+        if (country.id === id) {
+          if (country.imagesUrls) {
+            // with help from chatGPT
+            const updatedImagesUrls = [
+              ...new Set([...country.imagesUrls, ...addedImages.imagesUrls]),
+            ];
+
+            return {
+              ...country,
+              imagesUrls: updatedImagesUrls,
+              publicIds: addedImages.publicIds,
+            };
+          } else {
+            return {
+              ...country,
+              imagesUrls: addedImages.imagesUrls,
+              publicIds: addedImages.publicIds,
+            };
+          }
+        } else {
+          return country;
+        }
+      });
+    });
+  }
+
   return (
     <>
       {" "}
@@ -93,6 +122,7 @@ export default function App({ Component, pageProps }) {
         submitNewCountry={submitNewCountry}
         deleteImage={deleteImage}
         onEdit={onEdit}
+        newAddedImgs={newAddedImgs}
       />
     </>
   );

@@ -49,7 +49,7 @@ const StyledFieldset = styled.fieldset`
   box-shadow: 4px 4px 4px;
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   margin-top: 10%;
   padding-right: 6%;
 `;
