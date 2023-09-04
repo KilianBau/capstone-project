@@ -1,29 +1,36 @@
 import DetailCountry from "@/components/DetailCountry";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function DetailCountryPage({
   countries,
   deleteCountry,
   setCountry,
+  newAddedImgs,
 }) {
+  const [getImagesData, setGetImagesData] = useState([]);
   const router = useRouter();
   const currentPage = router.query.detailCountry;
-
+  const currentCountry = countries.find(
+    (country) => country.name === currentPage
+  );
   useEffect(() => {
+    function handleCurrentCountry() {
+      if (currentCountry) {
+        setCountry(currentCountry);
+      } else {
+        return null;
+      }
+    }
     handleCurrentCountry();
-  }, [handleCurrentCountry]);
+  }, [currentCountry, setCountry]);
 
   if (!currentPage) {
     return null;
   }
 
-  const currentCountry = countries.find(
-    (country) => country.name === currentPage
-  );
-
   async function onClickDelete(id, publicIds) {
-    const response = await fetch(`/api`, {
+    await fetch(`/api`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -44,17 +51,30 @@ export default function DetailCountryPage({
   function showButton() {
     deleteDialog.showModal();
   }
+  function closeButton() {
+    newImageDialog.close();
+  }
+  function newImg() {
+    newImageDialog.showModal();
+  }
 
   if (currentCountry === undefined) {
     return null;
   }
 
-  function handleCurrentCountry() {
-    if (currentCountry) {
-      setCountry(currentCountry);
-    } else {
-      return null;
-    }
+  function getImages(data) {
+    setGetImagesData([...getImagesData, data]);
+  }
+
+  function addImage(event) {
+    event.preventDefault();
+    const addedImages = {
+      imagesUrls: getImagesData.map((data) => data.info.path),
+      publicIds: getImagesData.map((data) => data.info.public_id),
+    };
+
+    const id = currentCountry.id;
+    newAddedImgs(id, addedImages);
   }
 
   return (
@@ -63,6 +83,10 @@ export default function DetailCountryPage({
         currentCountry={currentCountry}
         onClickDelete={onClickDelete}
         showButton={showButton}
+        getImages={getImages}
+        newImg={newImg}
+        addImage={addImage}
+        closeButton={closeButton}
       />
     </>
   );
