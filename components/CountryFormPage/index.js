@@ -47,6 +47,8 @@ const StyledFieldset = styled.fieldset`
   padding: 20px;
   border-radius: 16px;
   box-shadow: 4px 4px 4px;
+  border: none;
+  margin-top: 2%;
 `;
 
 export const StyledLabel = styled.label`

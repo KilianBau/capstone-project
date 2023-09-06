@@ -9,6 +9,7 @@ export default function DetailCountryPage({
   newAddedImgs,
 }) {
   const [getImagesData, setGetImagesData] = useState([]);
+  const [isSaved, setIsSaved] = useState(false);
   const router = useRouter();
   const currentPage = router.query.detailCountry;
   const currentCountry = countries.find(
@@ -54,7 +55,7 @@ export default function DetailCountryPage({
   function closeButton() {
     newImageDialog.close();
   }
-  function newImg() {
+  function newImgDialog() {
     newImageDialog.showModal();
   }
 
@@ -64,6 +65,7 @@ export default function DetailCountryPage({
 
   function getImages(data) {
     setGetImagesData([...getImagesData, data]);
+    setIsSaved(true);
   }
 
   function addImage(event) {
@@ -84,9 +86,10 @@ export default function DetailCountryPage({
         onClickDelete={onClickDelete}
         showButton={showButton}
         getImages={getImages}
-        newImg={newImg}
+        newImgDialog={newImgDialog}
         addImage={addImage}
         closeButton={closeButton}
+        isSaved={isSaved}
       />
     </>
   );

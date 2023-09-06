@@ -54,6 +54,5 @@ const CenteredImageContainer = styled.div`
 `;
 
 const StyledImage = styled(Image)`
-  border: 2px solid black;
   border-radius: 2%;
 `;
