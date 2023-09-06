@@ -1,5 +1,4 @@
-import { styled } from "styled-components";
-
+import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import { StyledDiv } from "../Card";
@@ -12,14 +11,14 @@ export default function DetailCountry({
   onClickDelete,
   showButton,
   getImages,
-  newImg,
+  newImgDialog,
   addImage,
   closeButton,
-  isSafe,
+  isSaved,
 }) {
   const { name, startDate, endDate, id, imagesUrls, publicIds } =
     currentCountry;
-  console.log(currentCountry);
+
   const startDatum = moment(startDate).format("ll");
   const endDatum = moment(endDate).format("ll");
   return (
@@ -39,7 +38,7 @@ export default function DetailCountry({
           </StyledBackButton>
         </Link>
         <CenterDiv>
-          <AddButton onClick={newImg}>+</AddButton>
+          <AddButton onClick={newImgDialog}>+</AddButton>
         </CenterDiv>
         <dialog id="newImageDialog">
           <p>Bilder hinzufügen: </p>
@@ -50,11 +49,11 @@ export default function DetailCountry({
                 id="addimg"
                 uploadPreset="v3xj87i3"
                 onUpload={getImages}
-                onClose={newImg}
+                onClose={newImgDialog}
                 onClick={closeButton}
                 required
               />
-              <button type="submit" disabled={!isSafe} onClick={closeButton}>
+              <button type="submit" disabled={!isSaved} onClick={closeButton}>
                 Speichern
               </button>
 
@@ -213,6 +212,9 @@ const StyledCountry = styled.li`
 `;
 
 export const StyledDeleteButton = styled.button`
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: 8px;
   &:hover {
     background-color: transparent;
   }
@@ -226,6 +228,9 @@ export const StyledButtonDiv = styled.div`
 `;
 
 const StyledBackButton = styled.button`
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: 8px;
   &:hover {
     background-color: transparent;
   }
@@ -235,11 +240,13 @@ const StyledEditButton = styled.button`
   position: absolute;
   top: 0rem;
   right: 0;
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: 8px;
   &:hover {
     background-color: transparent;
   }
   border-radius: 50%;
-  border: 1px solid grey;
 `;
 
 const StyledButton = styled.button`
@@ -259,4 +266,10 @@ const AddButton = styled.button`
   color: black;
   padding: 2px 8px 2px 8px;
   font-weight: 700;
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  &:hover {
+    background-color: transparent;
+  }
 `;

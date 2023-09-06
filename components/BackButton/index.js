@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function BackButton() {
   const router = useRouter();
@@ -25,4 +25,7 @@ const StyledBackButton = styled.button`
   &:hover {
     background-color: transparent;
   }
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: 8px;
 `;
