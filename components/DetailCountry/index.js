@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { StyledCountries } from "../Card";
+
 import Link from "next/link";
 import Image from "next/image";
 import { StyledDiv } from "../Card";
@@ -15,10 +15,11 @@ export default function DetailCountry({
   newImg,
   addImage,
   closeButton,
+  isSafe,
 }) {
   const { name, startDate, endDate, id, imagesUrls, publicIds } =
     currentCountry;
-
+  console.log(currentCountry);
   const startDatum = moment(startDate).format("ll");
   const endDatum = moment(endDate).format("ll");
   return (
@@ -38,7 +39,7 @@ export default function DetailCountry({
           </StyledBackButton>
         </Link>
         <CenterDiv>
-          <button onClick={newImg}>+</button>
+          <AddButton onClick={newImg}>+</AddButton>
         </CenterDiv>
         <dialog id="newImageDialog">
           <p>Bilder hinzufügen: </p>
@@ -53,8 +54,12 @@ export default function DetailCountry({
                 onClick={closeButton}
                 required
               />
-              <button type="submit" onClick={closeButton}>
+              <button type="submit" disabled={!isSafe} onClick={closeButton}>
                 Speichern
+              </button>
+
+              <button type="button" onClick={closeButton}>
+                Abbrechen
               </button>
             </StyledButtonDiv>
           </form>
@@ -71,7 +76,7 @@ export default function DetailCountry({
         </StyledDeleteButton>
       </StyledButtonDiv>
       <dialog id="deleteDialog">
-        <p>Are you sure to delete this country?</p>
+        <p>Möchtest du dieses Land löschen?</p>
         <form method="dialog">
           <StyledButtonDiv>
             <button>cancel</button>
@@ -83,7 +88,7 @@ export default function DetailCountry({
           </StyledButtonDiv>
         </form>
       </dialog>
-      <StyledCountries>
+      <StyledCountryUl>
         <StyledCountry>
           <Link href={`/EditSubpage/${id}`}>
             <StyledEditButton>
@@ -105,7 +110,7 @@ export default function DetailCountry({
             </StyledDate>
           </StyledDivCard>
         </StyledCountry>
-      </StyledCountries>
+      </StyledCountryUl>
       {imagesUrls ? (
         <StyledImageListUl>
           {imagesUrls.map((imageUrl) => (
@@ -122,13 +127,32 @@ export default function DetailCountry({
           ))}
         </StyledImageListUl>
       ) : (
-        <p>Lade bitte Bilder deiner Reise hoch</p>
+        <StyledText>Lade bitte Bilder deiner Reise hoch</StyledText>
       )}
 
       <StyledDiv></StyledDiv>
     </>
   );
 }
+
+const StyledText = styled.p`
+  background-color: var(--primary-color);
+  width: 50%;
+  margin-left: 25%;
+  border-radius: 8px;
+  padding-left: 2%;
+`;
+
+const StyledCountryUl = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  gap: 1rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  padding: 0;
+`;
 
 const StyledImageListUl = styled.ul`
   display: flex;
@@ -160,22 +184,23 @@ const StyledDivCard = styled.div`
 const StyledCountryName = styled.h3`
   text-align: center;
   margin-top: 0;
+  margin-bottom: 5%;
 `;
 
 const StyledDateHeader = styled.h4`
   margin: 0 auto;
   font-weight: 600;
+  font-size: medium;
 `;
 
 const StyledDate = styled.h5`
   margin: 0 auto;
   font-weight: 400;
+  font-size: small;
 `;
 
 const StyledCountry = styled.li`
-  border: 2px solid black;
   width: 90%;
-  text-align: left;
   background-color: var(--primary-color);
   border-radius: 6px;
   padding-top: 8%;
@@ -196,6 +221,8 @@ export const StyledDeleteButton = styled.button`
 export const StyledButtonDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-left: 2%;
+  margin-right: 2%;
 `;
 
 const StyledBackButton = styled.button`
@@ -224,4 +251,12 @@ const StyledButton = styled.button`
 const CenterDiv = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const AddButton = styled.button`
+  border: 1px solid black;
+  border-radius: 50%;
+  color: black;
+  padding: 2px 8px 2px 8px;
+  font-weight: 700;
 `;

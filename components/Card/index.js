@@ -37,35 +37,38 @@ export const Spacer = styled.div`
 
 export const StyledCountries = styled.ul`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   list-style-type: none;
   gap: 1rem;
-  padding: 0%;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  padding: 0;
 `;
 
 export const StyledListCountry = styled.li`
   font-weight: 700;
+  color: black;
 `;
 
 export const StyledDetailLink = styled(Link)`
   font-size: 25px;
-  margin-top: 0 auto;
+  margin-top: 0;
   overflow: auto;
   text-decoration: none;
   color: black;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
 `;
 
 export const ImageWrapperSpan = styled.span`
-  border: 2px solid black;
-  width: 90%;
+  flex: 1;
   text-align: left;
   background-color: var(--primary-color);
   border-radius: 6px;
-  padding-top: 8%;
-  padding-bottom: 8%;
-  padding-left: 2%;
+  padding: 1% 2%;
   position: relative;
 `;
 
@@ -77,9 +80,9 @@ export const StyledDiv = styled.div`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  border: 4px solid black;
+  border: 4px solid var(--primary-color);
   border-radius: 50%;
   padding: 0px 12px 4px 12px;
-  color: black;
+  color: var(--primary-color);
   font-size: 30px;
 `;

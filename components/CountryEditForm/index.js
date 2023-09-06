@@ -71,6 +71,7 @@ const StyledFieldset = styled.fieldset`
   height: 50%;
   padding: 20px;
   border-radius: 16px;
+  border: none;
   box-shadow: 4px 4px 4px;
 `;
 

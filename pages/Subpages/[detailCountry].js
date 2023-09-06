@@ -9,6 +9,7 @@ export default function DetailCountryPage({
   newAddedImgs,
 }) {
   const [getImagesData, setGetImagesData] = useState([]);
+  const [isSafe, setIsSafe] = useState(false);
   const router = useRouter();
   const currentPage = router.query.detailCountry;
   const currentCountry = countries.find(
@@ -64,6 +65,7 @@ export default function DetailCountryPage({
 
   function getImages(data) {
     setGetImagesData([...getImagesData, data]);
+    setIsSafe(true);
   }
 
   function addImage(event) {
@@ -87,6 +89,7 @@ export default function DetailCountryPage({
         newImg={newImg}
         addImage={addImage}
         closeButton={closeButton}
+        isSafe={isSafe}
       />
     </>
   );

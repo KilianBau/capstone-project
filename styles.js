@@ -8,17 +8,19 @@ export default createGlobalStyle`
   }
 
 :root {
-  --primary-color: rgb(69, 165, 217);
-  --secondary-color: rgb(232, 63, 85);
+  --primary-color: rgb(90,195,232);
+
 }
 
   body {
     margin: 0;
-
+    background-image: url("/world.png");
+background-color: lightgray;
     font-family: system-ui;
     width: 100%;
     height: 100%;
     max-width: 420px;
     margin-inline: auto;
+   
   }
 `;

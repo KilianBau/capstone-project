@@ -4,7 +4,7 @@ import { initialCountries } from "@/lib/db";
 import useLocalStorageState from "use-local-storage-state";
 import NavBar from "@/components/NavBar";
 import { useRouter } from "next/router";
-
+import Image from "next/image";
 export default function App({ Component, pageProps }) {
   const [countries, setCountries] = useLocalStorageState("countries", {
     defaultValue: initialCountries,
@@ -62,7 +62,6 @@ export default function App({ Component, pageProps }) {
     }
     const editCountry = countries.find((country) => country.id === id);
 
-    console.log("apps", editCountry);
     if (editCountry) {
       setCountries(
         countries.map((country) =>
@@ -86,11 +85,13 @@ export default function App({ Component, pageProps }) {
             const updatedImagesUrls = [
               ...new Set([...country.imagesUrls, ...addedImages.imagesUrls]),
             ];
-
+            const updatedPublicIds = [
+              ...new Set([...country.publicIds, ...addedImages.publicIds]),
+            ];
             return {
               ...country,
               imagesUrls: updatedImagesUrls,
-              publicIds: addedImages.publicIds,
+              publicIds: updatedPublicIds,
             };
           } else {
             return {
