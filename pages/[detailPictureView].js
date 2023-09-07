@@ -1,4 +1,6 @@
+import { ErrorMessage } from "@/components/Card";
 import DetailPictureView from "@/components/DetailPictureView";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function DetailPictureViewPage({ country, deleteImage }) {
@@ -14,8 +16,13 @@ export default function DetailPictureViewPage({ country, deleteImage }) {
 
   const currentPicture = imagesUrls[publicIdIndex];
 
-  if (currentPicture === undefined) {
-    return null;
+  if (!currentPicture || currentPicture.length === 0) {
+    return (
+      <>
+        <ErrorMessage>Error: Es ist kein Bild vorhanden</ErrorMessage>
+        <Link href={"/"}>Startseite</Link>{" "}
+      </>
+    );
   }
 
   async function handleDeletePicture() {
@@ -29,6 +36,7 @@ export default function DetailPictureViewPage({ country, deleteImage }) {
   function showImageDelete() {
     deleteImageDialog.showModal();
   }
+
   return (
     <>
       <DetailPictureView

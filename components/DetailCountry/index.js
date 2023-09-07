@@ -11,7 +11,7 @@ export default function DetailCountry({
   onClickDelete,
   showButton,
   getImages,
-  newImgDialog,
+  addNewImgDialog,
   addImage,
   closeButton,
   isSaved,
@@ -38,7 +38,7 @@ export default function DetailCountry({
           </StyledBackButton>
         </Link>
         <CenterDiv>
-          <AddButton onClick={newImgDialog}>+</AddButton>
+          <AddButton onClick={addNewImgDialog}>+</AddButton>
         </CenterDiv>
         <dialog id="newImageDialog">
           <p>Bilder hinzufügen: </p>
@@ -49,7 +49,7 @@ export default function DetailCountry({
                 id="addimg"
                 uploadPreset="v3xj87i3"
                 onUpload={getImages}
-                onClose={newImgDialog}
+                onClose={addNewImgDialog}
                 onClick={closeButton}
                 required
               />
@@ -78,10 +78,10 @@ export default function DetailCountry({
         <p>Möchtest du dieses Land löschen?</p>
         <form method="dialog">
           <StyledButtonDiv>
-            <button>cancel</button>
+            <button>abbrechen</button>
             <Link href={"/"}>
               <StyledButton onClick={() => onClickDelete(id, publicIds)}>
-                delete
+                löschen
               </StyledButton>
             </Link>
           </StyledButtonDiv>
