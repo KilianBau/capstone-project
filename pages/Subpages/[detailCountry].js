@@ -72,7 +72,9 @@ export default function DetailCountryPage({
 
   function getImages(data) {
     if (data) {
-      return setGetImagesData([...getImagesData, data]), setIsSaved(true);
+      setGetImagesData([...getImagesData, data]);
+      setIsSaved(true);
+      return;
     }
     if (!data) {
       return null;

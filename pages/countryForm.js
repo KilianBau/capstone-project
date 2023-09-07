@@ -8,7 +8,9 @@ export default function CountryFormPage({ submitNewCountry }) {
   const [isButtonActive, setIsButtonActive] = useState(false);
   function getData(data) {
     if (data) {
-      return setImagesData([...imagesData, data]), setIsButtonActive(true);
+      setImagesData([...imagesData, data]);
+      setIsButtonActive(true);
+      return;
     }
     if (!data) {
       return null, alert("Download failed");
