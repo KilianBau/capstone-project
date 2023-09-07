@@ -37,8 +37,11 @@ export default function DetailPictureView({
       <CenteredImageContainer>
         <StyledImage
           src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${currentPicture}`}
-          height={365}
-          width={365}
+          width={375}
+          height={667}
+          quality={100}
+          layout="responsive"
+          priority
           alt={`new added picture with path:${currentPicture}`}
         />
       </CenteredImageContainer>
@@ -48,11 +51,12 @@ export default function DetailPictureView({
 
 const CenteredImageContainer = styled.div`
   display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   margin-top: 2%;
 `;
-
 const StyledImage = styled(Image)`
-  border-radius: 2%;
+  max-width: 100%;
+  height: auto;
 `;

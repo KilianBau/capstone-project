@@ -119,6 +119,8 @@ export default function DetailCountry({
                   src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
                   height={150}
                   width={150}
+                  quality={100}
+                  priority
                   alt={`new added picture with Url:${imageUrl}`}
                 />
               </Link>
@@ -215,6 +217,7 @@ export const StyledDeleteButton = styled.button`
   border: none;
   background-color: var(--primary-color);
   border-radius: 8px;
+  z-index: 10;
   &:hover {
     background-color: transparent;
   }

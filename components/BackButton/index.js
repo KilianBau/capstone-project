@@ -28,4 +28,5 @@ const StyledBackButton = styled.button`
   border: none;
   background-color: var(--primary-color);
   border-radius: 8px;
+  z-index: 10;
 `;
