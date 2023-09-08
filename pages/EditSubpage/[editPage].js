@@ -1,4 +1,6 @@
+import { ErrorMessage } from "@/components/Card";
 import CountryEditForm from "@/components/CountryEditForm";
+import Link from "next/link";
 
 export default function EditPage({ setCountry, onEdit, country }) {
   function handleInputChangeName(event) {
@@ -33,6 +35,15 @@ export default function EditPage({ setCountry, onEdit, country }) {
 
     setCountry(updatedEditCountry);
   }
+  if (!country || country.length === 0) {
+    return (
+      <>
+        <ErrorMessage>Error: Es ist kein Land vorhanden</ErrorMessage>
+        <Link href={"/"}>Startseite</Link>{" "}
+      </>
+    );
+  }
+
   return (
     <CountryEditForm
       country={country}

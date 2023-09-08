@@ -1,4 +1,6 @@
+import { ErrorMessage } from "@/components/Card";
 import DetailCountry from "@/components/DetailCountry";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -55,17 +57,28 @@ export default function DetailCountryPage({
   function closeButton() {
     newImageDialog.close();
   }
-  function newImgDialog() {
+  function addNewImgDialog() {
     newImageDialog.showModal();
   }
 
-  if (currentCountry === undefined) {
-    return null;
+  if (!currentCountry || currentCountry.length === 0) {
+    return (
+      <>
+        <ErrorMessage>Error: Es ist kein Bild vorhanden</ErrorMessage>
+        <Link href={"/"}>Startseite</Link>{" "}
+      </>
+    );
   }
 
   function getImages(data) {
-    setGetImagesData([...getImagesData, data]);
-    setIsSaved(true);
+    if (data) {
+      setGetImagesData([...getImagesData, data]);
+      setIsSaved(true);
+      return;
+    }
+    if (!data) {
+      return null;
+    }
   }
 
   function addImage(event) {
@@ -86,7 +99,7 @@ export default function DetailCountryPage({
         onClickDelete={onClickDelete}
         showButton={showButton}
         getImages={getImages}
-        newImgDialog={newImgDialog}
+        addNewImgDialog={addNewImgDialog}
         addImage={addImage}
         closeButton={closeButton}
         isSaved={isSaved}

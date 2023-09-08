@@ -7,8 +7,14 @@ export default function CountryFormPage({ submitNewCountry }) {
   const [imagesData, setImagesData] = useState([]);
   const [isButtonActive, setIsButtonActive] = useState(false);
   function getData(data) {
-    setImagesData([...imagesData, data]);
-    setIsButtonActive(true);
+    if (data) {
+      setImagesData([...imagesData, data]);
+      setIsButtonActive(true);
+      return;
+    }
+    if (!data) {
+      return null, alert("Download failed");
+    }
   }
 
   function onSubmit(event) {
@@ -21,7 +27,7 @@ export default function CountryFormPage({ submitNewCountry }) {
       country.enddate &&
       country.startdate > country.enddate
     ) {
-      alert("End date cannot be before the start date");
+      alert("Enddatum kann nicht vor dem Startdatum gesetzt werden!");
       return;
     }
     const newCountry = {

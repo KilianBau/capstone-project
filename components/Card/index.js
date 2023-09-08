@@ -86,3 +86,10 @@ export const StyledLink = styled(Link)`
   color: var(--primary-color);
   font-size: 30px;
 `;
+
+export const ErrorMessage = styled.div`
+  font-size: 18px;
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+`;

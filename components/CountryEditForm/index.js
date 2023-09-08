@@ -8,9 +8,6 @@ export default function CountryEditForm({
   handleInputChangeStartDate,
   handleInputChangeEndDate,
 }) {
-  if (country === undefined) {
-    return null;
-  }
   return (
     <>
       <form onSubmit={onSubmitEdit}>

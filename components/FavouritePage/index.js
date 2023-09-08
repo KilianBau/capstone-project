@@ -7,11 +7,7 @@ import {
 } from "../Card";
 import FavouriteButton from "../FavouriteButton";
 
-export default function FavouritePage({ countries, toggleFavourite }) {
-  const favouriteCountries = countries.filter(
-    (country) => country.isFavourite === true
-  );
-
+export default function FavouritePage({ favouriteCountries, toggleFavourite }) {
   return (
     <>
       <StyledCountries>
