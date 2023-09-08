@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import CountryForm from ".";
 
-test("calls the onSubmit handler with inputs on submit", async () => {
+test("shows the input", async () => {
   render(<CountryForm />);
   const nameInput = screen.getByLabelText("Land hinzufügen:");
 

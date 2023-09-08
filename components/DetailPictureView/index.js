@@ -1,6 +1,6 @@
-import BackButton from "../BackButton";
 import Image from "next/image";
 import styled from "styled-components";
+import BackButton from "../BackButton";
 import { StyledButtonDiv, StyledDeleteButton } from "../DetailCountry";
 
 export default function DetailPictureView({
@@ -8,11 +8,14 @@ export default function DetailPictureView({
   handleDeletePicture,
   showImageDelete,
 }) {
+  const cloudinaryImageLoader = ({ src }) => {
+    return `https://res.cloudinary.com/dn8ymrr2t/image/upload/${src}`;
+  };
   return (
     <>
       <StyledButtonDiv>
         <BackButton />
-        <StyledDeleteButton onClick={showImageDelete}>
+        <StyledDeleteButton onClick={showImageDelete} aria-label="Bild löschen">
           <svg
             width={20}
             height={20}
@@ -24,39 +27,39 @@ export default function DetailPictureView({
         </StyledDeleteButton>
       </StyledButtonDiv>
       <dialog id="deleteImageDialog">
-        <p>Are you sure to delete this picture?</p>
+        <p>Bist du dir sicher dieses Bild zu löschen?</p>
         <form method="dialog">
           <StyledButtonDiv>
-            <button>cancel</button>
+            <button aria-label="abbrechen">abbrechen</button>
 
-            <button onClick={handleDeletePicture}>delete</button>
+            <button onClick={handleDeletePicture} aria-label="löschen">
+              löschen
+            </button>
           </StyledButtonDiv>
         </form>
       </dialog>
-
-      <CenteredImageContainer>
+      <CenterDiv>
         <StyledImage
-          src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${currentPicture}`}
-          width={375}
-          height={667}
+          src={`${currentPicture}`}
+          width={1000}
+          height={1000}
           quality={100}
-          layout="responsive"
           priority
           alt={`new added picture with path:${currentPicture}`}
+          loader={cloudinaryImageLoader}
+          layout="responsive"
         />
-      </CenteredImageContainer>
+      </CenterDiv>
     </>
   );
 }
 
-const CenteredImageContainer = styled.div`
-  display: flex;
-  display: block;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2%;
-`;
 const StyledImage = styled(Image)`
-  max-width: 100%;
-  height: auto;
+  max-width: 375px;
+  max-height: 450px;
+  margin: 0.5rem auto;
+`;
+
+const CenterDiv = styled.div`
+  display: flex;
 `;

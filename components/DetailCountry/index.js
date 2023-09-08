@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
-import { StyledDiv } from "../Card";
 import moment from "moment";
 import "moment/locale/de";
 import { CldUploadButton } from "next-cloudinary";
+import Image from "next/image";
+import Link from "next/link";
+import styled from "styled-components";
+import { StyledDiv } from "../Card";
 
 export default function DetailCountry({
   currentCountry,
@@ -16,6 +16,9 @@ export default function DetailCountry({
   closeButton,
   isSaved,
 }) {
+  const cloudinaryImageLoader = ({ src }) => {
+    return `https://res.cloudinary.com/dn8ymrr2t/image/upload/${src}`;
+  };
   const { name, startDate, endDate, id, imagesUrls, publicIds } =
     currentCountry;
 
@@ -25,7 +28,7 @@ export default function DetailCountry({
     <>
       <StyledButtonDiv>
         <Link href={"/"}>
-          <StyledBackButton>
+          <StyledBackButton aria-label="zurück Button">
             {" "}
             <svg
               height={20}
@@ -38,7 +41,9 @@ export default function DetailCountry({
           </StyledBackButton>
         </Link>
         <CenterDiv>
-          <AddButton onClick={addNewImgDialog}>+</AddButton>
+          <AddButton onClick={addNewImgDialog} aria-label="hinzufügen Button">
+            +
+          </AddButton>
         </CenterDiv>
         <dialog id="newImageDialog">
           <p>Bilder hinzufügen: </p>
@@ -52,18 +57,28 @@ export default function DetailCountry({
                 onClose={addNewImgDialog}
                 onClick={closeButton}
                 required
+                aria-label="Bilder hochladen"
               />
-              <button type="submit" disabled={!isSaved} onClick={closeButton}>
+              <button
+                type="submit"
+                disabled={!isSaved}
+                onClick={closeButton}
+                aria-label="speichern Button"
+              >
                 Speichern
               </button>
 
-              <button type="button" onClick={closeButton}>
+              <button
+                type="button"
+                onClick={closeButton}
+                aria-label="abbrechen Button"
+              >
                 Abbrechen
               </button>
             </StyledButtonDiv>
           </form>
         </dialog>
-        <StyledDeleteButton onClick={showButton}>
+        <StyledDeleteButton onClick={showButton} aria-label="Gallerie löschen">
           <svg
             width={20}
             height={20}
@@ -78,9 +93,12 @@ export default function DetailCountry({
         <p>Möchtest du dieses Land löschen?</p>
         <form method="dialog">
           <StyledButtonDiv>
-            <button>abbrechen</button>
+            <button aria-label="abbrechen">abbrechen</button>
             <Link href={"/"}>
-              <StyledButton onClick={() => onClickDelete(id, publicIds)}>
+              <StyledButton
+                onClick={() => onClickDelete(id, publicIds)}
+                aria-label="löschen"
+              >
                 löschen
               </StyledButton>
             </Link>
@@ -90,7 +108,7 @@ export default function DetailCountry({
       <StyledCountryUl>
         <StyledCountry>
           <Link href={`/EditSubpage/${id}`}>
-            <StyledEditButton>
+            <StyledEditButton aria-label="Land bearbeiten">
               <svg
                 width={20}
                 height={20}
@@ -110,39 +128,32 @@ export default function DetailCountry({
           </StyledDivCard>
         </StyledCountry>
       </StyledCountryUl>
-      {imagesUrls ? (
-        <StyledImageListUl>
-          {imagesUrls.map((imageUrl) => (
-            <StyledImageLi key={imageUrl}>
-              <Link href={`/${publicIds[imagesUrls.indexOf(imageUrl)]}`}>
-                <Image
-                  src={`https://res.cloudinary.com/dn8ymrr2t/image/upload/${imageUrl}`}
-                  height={150}
-                  width={150}
-                  quality={100}
-                  priority
-                  alt={`new added picture with Url:${imageUrl}`}
-                />
-              </Link>
-            </StyledImageLi>
-          ))}
-        </StyledImageListUl>
-      ) : (
-        <StyledText>Lade bitte Bilder deiner Reise hoch</StyledText>
-      )}
+
+      <StyledImageListUl>
+        {imagesUrls.map((imageUrl) => (
+          <StyledImageLi key={imageUrl}>
+            <Link
+              href={`/${publicIds[imagesUrls.indexOf(imageUrl)]}`}
+              aria-label="Großansicht des Bildes"
+            >
+              <Image
+                src={`${imageUrl}`}
+                height={150}
+                width={150}
+                quality={100}
+                priority
+                alt={`new added picture with Url:${imageUrl}`}
+                loader={cloudinaryImageLoader}
+              />
+            </Link>
+          </StyledImageLi>
+        ))}
+      </StyledImageListUl>
 
       <StyledDiv></StyledDiv>
     </>
   );
 }
-
-const StyledText = styled.p`
-  background-color: var(--primary-color);
-  width: 50%;
-  margin-left: 25%;
-  border-radius: 8px;
-  padding-left: 2%;
-`;
 
 const StyledCountryUl = styled.ul`
   display: flex;
@@ -160,19 +171,16 @@ const StyledImageListUl = styled.ul`
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin-left: 0 auto;
+  margin: 0 auto;
   justify-content: center;
-  @media (max-width: 375px) {
-    padding-left: 7%;
-    padding-right: 7%;
-  }
+  padding: 0;
 `;
 
 const StyledImageLi = styled.li`
-  width: calc(50% - 10px);
-  margin-bottom: 20px;
   list-style: none;
-  margin-bottom: 2%;
+  margin: 0.5rem auto;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 `;
 
 const StyledDivCard = styled.div`
