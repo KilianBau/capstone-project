@@ -8,7 +8,7 @@ export default function BackButton() {
   }
 
   return (
-    <StyledBackButton onClick={onClickBack}>
+    <StyledBackButton onClick={onClickBack} aria-label="Go back">
       <svg
         height={20}
         width={20}

@@ -1,15 +1,15 @@
 import AppName from "@/components/AppName";
-import GlobalStyle from "../styles";
-import { initialCountries } from "@/lib/db";
-import useLocalStorageState from "use-local-storage-state";
 import NavBar from "@/components/NavBar";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import useLocalStorageState from "use-local-storage-state";
+import GlobalStyle from "../styles";
 export default function App({ Component, pageProps }) {
   const [countries, setCountries] = useLocalStorageState("countries", {
-    defaultValue: initialCountries,
+    defaultValue: [],
   });
-  const [country, setCountry] = useLocalStorageState();
+  const [country, setCountry] = useLocalStorageState("country", {
+    defaultValue: [],
+  });
   const router = useRouter();
 
   function submitNewCountry(newCountry) {

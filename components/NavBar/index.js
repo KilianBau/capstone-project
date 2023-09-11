@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function NavBar() {
   return (
     <NavBarWrapperUl>
-      <StyledLink href={"/"}>
+      <StyledLink href={"/"} aria-label="Startseite">
         <StyledLi>
           <svg
             height={15}
@@ -18,7 +18,7 @@ export default function NavBar() {
         </StyledLi>
       </StyledLink>
 
-      <StyledLink href={"/Subpages/Favourite"}>
+      <StyledLink href={"/Subpages/Favourite"} aria-label="Favorisierseite">
         {" "}
         <StyledLi>
           <svg

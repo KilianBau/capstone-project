@@ -6,7 +6,9 @@ export default function Card({ countries, toggleFavourite }) {
   return (
     <>
       <StyledDiv>
-        <StyledLink href="/countryForm">+</StyledLink>
+        <StyledLink href="/countryForm" aria-label="Land hinzufügen">
+          +
+        </StyledLink>
       </StyledDiv>
       <StyledCountries>
         {countries.map((country) => (
@@ -19,7 +21,10 @@ export default function Card({ countries, toggleFavourite }) {
               }
               stroke="grey"
             />
-            <StyledDetailLink href={`/Subpages/${country.name}`}>
+            <StyledDetailLink
+              href={`/Subpages/${country.name}`}
+              aria-label="Bilder Galerie"
+            >
               <StyledListCountry>{country.name}</StyledListCountry>
             </StyledDetailLink>
           </ImageWrapperSpan>
@@ -75,7 +80,7 @@ export const ImageWrapperSpan = styled.span`
 export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 8%;
+  margin-bottom: 12%;
 `;
 
 export const StyledLink = styled(Link)`

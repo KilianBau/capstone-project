@@ -1,9 +1,13 @@
-import Card, { ErrorMessage } from "@/components/Card";
+import Card, { ErrorMessage, StyledDiv, StyledLink } from "@/components/Card";
 
 export default function HomePage({ countries, toggleFavourite }) {
   try {
     if (!countries || countries.length === 0) {
-      throw new Error("Keine Länder gefunden!");
+      return (
+        <StyledDiv>
+          <StyledLink href="/countryForm">+</StyledLink>
+        </StyledDiv>
+      );
     }
     return (
       <>

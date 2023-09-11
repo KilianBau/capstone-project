@@ -22,6 +22,7 @@ export default function CountryEditForm({
               type="text"
               required
               onChange={handleInputChangeName}
+              aria-labelledby="name-input"
             />
             <StyledLabel htmlFor="startdate">Startdatum:</StyledLabel>
             <StyledInput
@@ -30,6 +31,7 @@ export default function CountryEditForm({
               id="startdate"
               type="date"
               onChange={handleInputChangeStartDate}
+              aria-labelledby="startdatum-input"
             />
             <StyledLabel htmlFor="enddate">Enddatum:</StyledLabel>
             <StyledInput
@@ -38,6 +40,7 @@ export default function CountryEditForm({
               id="enddate"
               type="date"
               onChange={handleInputChangeEndDate}
+              aria-labelledby="enddatum-input"
             />
           </StyledDiv>
 
@@ -51,6 +54,7 @@ export default function CountryEditForm({
                 country.endDate
               )
             }
+            aria-label="Speichern"
           >
             Speichern
           </StyledButton>

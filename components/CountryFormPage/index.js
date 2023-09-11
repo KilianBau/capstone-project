@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { CldUploadButton } from "next-cloudinary";
+import styled from "styled-components";
 
 export default function CountryForm({ getData, onSubmit, isButtonActive }) {
   return (
@@ -15,11 +15,22 @@ export default function CountryForm({ getData, onSubmit, isButtonActive }) {
               type="text"
               placeholder="Österreich, Australien..."
               required
+              aria-labelledby="name-input"
             />
             <StyledLabel htmlFor="startdate">Startdatum:</StyledLabel>
-            <StyledInput name="startdate" id="startdate" type="date" />
+            <StyledInput
+              name="startdate"
+              id="startdate"
+              type="date"
+              aria-labelledby="startdate-input"
+            />
             <StyledLabel htmlFor="enddate">Enddatum:</StyledLabel>
-            <StyledInput name="enddate" id="enddate" type="date" />
+            <StyledInput
+              name="enddate"
+              id="enddate"
+              type="date"
+              aria-labelledby="enddate-input"
+            />
           </StyledDiv>
           <StyledLabel htmlFor="uploadimg">Upload:</StyledLabel>
           <CldUploadButton
@@ -28,8 +39,13 @@ export default function CountryForm({ getData, onSubmit, isButtonActive }) {
             onUpload={getData}
             uploadPreset="v3xj87i3"
             required
+            aria-label="Bulder hochladen"
           />
-          <StyledButton type="submit" disabled={!isButtonActive}>
+          <StyledButton
+            type="submit"
+            disabled={!isButtonActive}
+            aria-label="hinzufügen"
+          >
             Hinzufügen
           </StyledButton>
         </StyledFieldset>

@@ -17,7 +17,10 @@ export default function FavouritePage({ favouriteCountries, toggleFavourite }) {
               onClick={() => toggleFavourite(country.id)}
               color={country.isFavourite ? "rgb(191, 46, 80)" : "black"}
             />
-            <StyledDetailLink href={`/Subpages/${country.name}`}>
+            <StyledDetailLink
+              href={`/Subpages/${country.name}`}
+              aria-label="Gallerieansicht"
+            >
               <StyledListCountry>{country.name}</StyledListCountry>
             </StyledDetailLink>
           </ImageWrapperSpan>

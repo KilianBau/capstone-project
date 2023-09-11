@@ -1,37 +1,14 @@
-# New Next Project
+# TripPic
 
-This project was created from the neue fische `next` template.
+TripPic ist eine App in der man Bilder Länderspezifisch ordnen kann.
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+Diese App wurde als mein Abschlussprojekt während der letzten vier Wochen des neuefische Web Development Bootcamp im Juni 2023 entwickelt.
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+Diese App ist für die mobile Nutzung optimiert, schalte also bitte deinen Browser in den responsiven Modus (iPhone 6/7/8)
 
-## Development
+## Try it
 
-### Local Development
+Vercel: capstone-project-two-chi.vercel.app
 
-To work locally, please install the dependencies using `npm i` first.
-
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
-
-Use `npm run test` to run the tests.
-
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+![App screenshot](/public/Screenshot%202023-09-06%20at%2011.13.59.png)
+![App screenshot](/public/Screenshot%202023-09-08%20at%2015.01.07.png)
