@@ -72,6 +72,7 @@ export const ImageWrapperSpan = styled.span`
   flex: 1;
   text-align: left;
   background-color: var(--primary-color);
+  border: 1px solid black;
   border-radius: 6px;
   padding: 1% 2%;
   position: relative;
@@ -87,7 +88,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   border: 4px solid var(--primary-color);
   border-radius: 50%;
-  padding: 0px 12px 4px 12px;
+  padding: 2px 10px 2px 10px;
   color: var(--primary-color);
   font-size: 30px;
 `;

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import { StyledDiv } from "../Card";
+import { useRouter } from "next/router";
 
 export default function DetailCountry({
   currentCountry,
@@ -16,6 +17,7 @@ export default function DetailCountry({
   closeButton,
   isSaved,
 }) {
+  const router = useRouter();
   const cloudinaryImageLoader = ({ src }) => {
     return `https://res.cloudinary.com/dn8ymrr2t/image/upload/${src}`;
   };
@@ -27,19 +29,23 @@ export default function DetailCountry({
   return (
     <>
       <StyledButtonDiv>
-        <Link href={"/"}>
-          <StyledBackButton aria-label="zurück Button">
-            {" "}
-            <svg
-              height={20}
-              width={20}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-            >
-              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
-          </StyledBackButton>
-        </Link>
+        <StyledBackButton
+          aria-label="zurück Button"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          {" "}
+          <svg
+            height={20}
+            width={20}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+          </svg>
+        </StyledBackButton>
+
         <CenterDiv>
           <AddButton onClick={addNewImgDialog} aria-label="hinzufügen Button">
             +
@@ -138,12 +144,17 @@ export default function DetailCountry({
             >
               <Image
                 src={`${imageUrl}`}
-                height={150}
-                width={150}
+                height={250}
+                width={250}
                 quality={100}
                 priority
                 alt={`new added picture with Url:${imageUrl}`}
                 loader={cloudinaryImageLoader}
+                style={{ objectFit: "contain" }}
+                onError={(e) =>
+                  alert("Es kam zu einem Fehler beim laden des Bildes")
+                }
+                loading="eager"
               />
             </Link>
           </StyledImageLi>
@@ -160,27 +171,21 @@ const StyledCountryUl = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   list-style-type: none;
-  gap: 1rem;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
+  width: 100%;
   padding: 0;
 `;
 
 const StyledImageListUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 0;
+  list-style: none;
 `;
 
 const StyledImageLi = styled.li`
-  list-style: none;
-  margin: 0.5rem auto;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin: 0 auto;
 `;
 
 const StyledDivCard = styled.div`
@@ -209,7 +214,7 @@ const StyledDate = styled.h5`
 `;
 
 const StyledCountry = styled.li`
-  width: 90%;
+  width: 100%;
   background-color: var(--primary-color);
   border-radius: 6px;
   padding-top: 8%;
