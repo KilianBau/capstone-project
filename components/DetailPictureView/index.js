@@ -48,6 +48,9 @@ export default function DetailPictureView({
           alt={`new added picture with path:${currentPicture}`}
           loader={cloudinaryImageLoader}
           layout="responsive"
+          style={{ objectFit: "contain" }}
+          onError={(e) => alert(e.target.id)}
+          loading="eager"
         />
       </CenterDiv>
     </>

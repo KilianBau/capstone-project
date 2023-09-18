@@ -6,10 +6,9 @@ export default function AppName() {
 
 const StyledAppName = styled.h1`
   text-align: center;
-
-  border-radius: 8px;
+  width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
-  margin: 15px;
+  margin-top: 0;
   background-color: var(--primary-color);
 `;

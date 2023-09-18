@@ -40,10 +40,10 @@ const NavBarWrapperUl = styled.ul`
   bottom: 0;
   position: fixed;
   margin: 0;
-  border-radius: 8px;
+
   list-style: none;
   justify-content: space-between;
-  width: 60%;
+
   z-index: 10;
   padding: 0;
   align-items: center;
@@ -52,7 +52,7 @@ const NavBarWrapperUl = styled.ul`
   /* this code is from ChatGPT */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%);
-  width: 90%; /* Responsive width */
+  width: 100%; /* Responsive width */
   max-width: 400px;
   /* this code is from ChatGPT */
 `;
